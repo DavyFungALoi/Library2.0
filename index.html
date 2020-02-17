@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Library</title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <button data-modal-target="#modal"> New Book </button>
+    <div class = 'modal' id = 'modal'>
+            <div class= 'modal-header'>
+                <div class = "title"> Add a book to the Library</div>
+                <button data-close-button class = 'close-button'>&times;</button>
+            </div>
+                      
+            <div class= 'modal-body'>
+                   <div class = 'form'> <form>                  
+                        <div> Author: <input id="author" type="text"> </div>
+                        <div> Title: <input id = "title" type="text"> </div>
+                        <div>Pages: <input id="pages" type="number"></div>
+                        <div><input type= "button" value=submit onclick="submitbook()"></div>
+                        </div>  </div>
+
+                </div>   
+   <div id='overlay'></div>       
+<div id = "bookcontainer"></div> 
+    
+    <div class = "book-overview">
+   
+
+</div>
+
+</body>
+<script src="app.js"></script>
+</html>
