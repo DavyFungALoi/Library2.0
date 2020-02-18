@@ -1,4 +1,5 @@
-let library = []
+let library = [
+ ]
 
 
 function submitbook(book) {
@@ -39,21 +40,24 @@ class createBook {
         }
             
 }
-
-function addBookToLibrary(book) {
-for (i=0; i<library.length;i++)
-{
-
- let bookinfo = document.createElement("div")
- let removebutton = document.createElement("button")
- removebutton.setAttribute('book-remove-button',[i])
- removebutton.textContent = "Remove"
- bookinfo.classList.add('book-overview' + [i])
- bookinfo.textContent =library[i].author + " " + library[i].title + " " + library[i].pages + " " + library[i].readStatus
- document.getElementById("bookcontainer").appendChild(bookinfo)
- document.getElementById("bookcontainer").appendChild(removebutton)
-  }
+const addBookToLibrary = (book) => {
+document.getElementById("bookcontainer").innerHTML=""
+library.forEach((createBook, index) => {
+    let bookinfo = document.createElement("div")
+    let removebutton = document.createElement("button")
+    removebutton.classList.add("book__remove-button" );
+    removebutton.setAttribute('book-remove-button', index)
+    removebutton.textContent = "Remove"
+    bookinfo.classList.add('book-overview')
+    bookinfo.textContent =createBook.author + " " + createBook.title + " " + createBook.pages
+    document.getElementById("bookcontainer").appendChild(bookinfo)
+    document.getElementById("bookcontainer").appendChild(removebutton)
+})
 }
+
+
+
+
 
 /*Modal JS*/
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
