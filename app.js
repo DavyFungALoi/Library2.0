@@ -40,24 +40,47 @@ class createBook {
         }
             
 }
+
 const addBookToLibrary = (book) => {
-document.getElementById("bookcontainer").innerHTML=""
+    document.getElementById("bookcontainer").innerHTML=""
 library.forEach((createBook, index) => {
     let bookinfo = document.createElement("div")
-    let removebutton = document.createElement("button")
-    removebutton.classList.add("book__remove-button" );
-    removebutton.setAttribute('book-remove-button', index)
-    removebutton.textContent = "Remove"
     bookinfo.classList.add('book-overview')
-    bookinfo.textContent =createBook.author + " " + createBook.title + " " + createBook.pages
+    bookinfo.textContent =createBook.author + " " + createBook.title + " " + createBook.pages + " " + createBook.readStatus
     document.getElementById("bookcontainer").appendChild(bookinfo)
+    
+    let togglebutton = document.createElement("button")
+    togglebutton.classList.add("book-toggle-button" );
+    togglebutton.setAttribute('data-toggle-button', index)
+    togglebutton.textContent = "toggle"
+    togglebutton.addEventListener( "click", clickBook );
+    document.getElementById("bookcontainer").appendChild(togglebutton)
+
+    let removebutton = document.createElement("button")
+    removebutton.classList.add("book-remove-button" );
+    removebutton.setAttribute('data-remove-button', index)
+    removebutton.textContent = "Remove"
+    removebutton.addEventListener( "click", clickBook );
     document.getElementById("bookcontainer").appendChild(removebutton)
+    
 })
 }
 
+function clickBook (click) {
+    if(click.target.className == "book-remove-button") {
+        const indexNumber = click.target.dataset.indexNumber;
 
-
-
+        library.splice(indexNumber,1)
+        console.log(library)
+        addBookToLibrary()
+      }
+      else if (click.target.className == "book-toggle-button") {
+        const indexNumber = click.target.dataset.indexNumber;
+        const bookNumber = library[indexNumber]
+        bookNumber.togglereadStatus() 
+        addBookToLibrary()
+      }
+}
 
 /*Modal JS*/
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
