@@ -66,21 +66,20 @@ library.forEach((createBook, index) => {
 })
 }
 
-function clickBook (click) {
-    if(click.target.className == "book-remove-button") {
-        const indexNumber = click.target.dataset.indexNumber;
-
+function clickBook (event) {
+    if(event.target.className === "book-remove-button") {
+        const indexNumber = event.target.getAttribute('data-remove-button')
         library.splice(indexNumber,1)
-        console.log(library)
         addBookToLibrary()
       }
-      else if (click.target.className == "book-toggle-button") {
-        const indexNumber = click.target.dataset.indexNumber;
+      else if (event.target.className === "book-toggle-button") {
+        const indexNumber = event.target.getAttribute('data-toggle-button')
         const bookNumber = library[indexNumber]
         bookNumber.togglereadStatus() 
         addBookToLibrary()
       }
 }
+
 
 /*Modal JS*/
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
